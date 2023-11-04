@@ -1,0 +1,3 @@
+﻿  Console_Chat.cpp
+E:\Programs\SkillFactory\Console_Chat\Console_Chat\Console_Chat\Console_Chat.cpp(55): warning C4715: 'actions': not all control paths return a value
+  Console_Chat.vcxproj -> E:\Programs\SkillFactory\Console_Chat\Console_Chat\x64\Debug\Console_Chat.exe
