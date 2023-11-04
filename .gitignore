@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+#Folders
+Console_Chat/.vs/
+Console_Chat/Console_Chat/x64/
+Console_Chat/x64/
+*.vcxproj.filters
+*.vcxproj.user
