@@ -1,8 +1,10 @@
 #include <iostream>
-#include "User.h"
+#include "Chat.h"
 
-int actions()
+
+int actions(Chat* chat, bool* user_exist)
 {
+    
     std::cout << "\nВведите код команды : 0 - регистрация, 1 - логин, 2 - отправить сообщение,\n 3 - сменить пользователя, 4 - общий чат, 5 - приватный чат,\n 6 - список пользователей, q - выход" << std::endl;
     char* choice= new char;
     std::cin >> *choice;
@@ -11,6 +13,7 @@ int actions()
         case '0':
         {
             std::cout << "\nВыполняется регистрация нового пользователя" << std::endl;
+            chat->regUser(user_exist);
             break;
         }
         case '1':
@@ -45,17 +48,20 @@ int actions()
         }
         case 'q':
         {
+            std::cout << "\nЗакрытие чата\nДо свидания!" << std::endl;
             return 0;
         }
     }
     delete choice;
-    actions();
+    actions(chat, user_exist);
 }
 
 int main()
 {
     setlocale(LC_ALL, "");
-    actions();
+    Chat chat;
+    bool user_exist{ false };
+    actions(&chat, &user_exist);
     return 0;
 }
 

@@ -14,7 +14,7 @@ std::string User::getName()
 	return _name;
 }
 
-void User::setName(std::string& name)
+void User::setName(std::string name)
 {
 	_name = name;
 }
@@ -24,7 +24,7 @@ std::string User::getLogin()
 	return _login;
 }
 
-void User::setLogin(std::string& login)
+void User::setLogin(std::string login)
 {
 	_login = login;
 }
@@ -34,7 +34,7 @@ std::string User::getPassword()
 	return _password;
 }
 
-void User::setPassword(std::string& password)
+void User::setPassword(std::string password)
 {
 	_password = password;
 }
