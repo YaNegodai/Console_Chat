@@ -6,7 +6,7 @@ class User
 {
 public:
 	//Конструкторы
-	explicit User(const std::string& name, const std::string& login, const std::string& password); // явное задание 
+	explicit User(const std::string name, const std::string login, const std::string password); // явное задание 
 	//Деструктор
 	~User(); // деструктор + освобождение выделенной памяти
 	//Методы
@@ -16,9 +16,11 @@ public:
 	void setLogin(std::string& login);
 	std::string getPassword();
 	void setPassword(std::string& password);
+	void showUser();
+	void showUserName();
 protected:
-	std::string* _name;
+	std::string _name;
 private:
-	std::string* _login;
-	std::string* _password;
+	std::string _login;
+	std::string _password;
 };
