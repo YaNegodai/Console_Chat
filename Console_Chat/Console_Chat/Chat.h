@@ -27,5 +27,9 @@ private:
 	std::vector<Message> _messageList;
 	std::string _activeUserLogin;
 	std::string _activeUserName;
+	std::string _activeResLogin;
+
+	int userID;
+	int resID;
 	
 };
