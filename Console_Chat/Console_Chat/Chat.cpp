@@ -1,9 +1,9 @@
-#include "Chat.h"
+ï»¿#include "Chat.h"
 #include <conio.h>
 
 Chat::Chat()
 {
-	std::cout << "\n×àò çàïóùåí" << "\n\n";
+	std::cout << "\nÐ§Ð°Ñ‚ Ð·Ð°Ð¿ÑƒÑ‰ÐµÐ½" << "\n\n";
 }
 
 Chat::~Chat()
@@ -16,20 +16,20 @@ void Chat::regUser(bool* user_exist)
 	User user;
 	*user_exist = true;
 	std::string temp;
-	std::cout << "\nÂâåäèòå èìÿ: ";
+	std::cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ: ";
 	std::getline(std::cin, temp);
 	user.setName(temp);
 
-	std::cout << "\nÂâåäèòå ëîãèí: ";
+	std::cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð»Ð¾Ð³Ð¸Ð½: ";
 	std::getline(std::cin, temp);
 	user.setLogin(temp);
 
-	std::cout << "\nÂâåäèòå ïàðîëü: ";
+	std::cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ: ";
 	std::getline(std::cin, temp);
 	user.setPassword(temp);
 
 	_userList.push_back(user);
-	std::cout << "\nÂû çàðåãèñòðèðîâàíû êàê:\n";
+	std::cout << "\nÐ’Ñ‹ Ð·Ð°Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹ ÐºÐ°Ðº:\n";
 	user.showUser();
 }
 
@@ -41,25 +41,25 @@ void Chat::createMessage(User user)
 	return message.showMessage();
 }
 
-void Chat::privateChat(User user)
+void Chat::privateChat(User user, User user2)
 {
 	std::cout << "Welcome to private chat" << std::endl;
 	void ShowUserList();
-	std::cout << "Please, selecte recipient ID. You have a few seconds" << endl;
-	std::cout << "Øf you want to exit click ENTER" << endl;
+	std::cout << "Please, selecte recipient ID. You have a few seconds" << std::endl;
+	std::cout << "if you want to exit click ENTER" << std::endl;
 	_sleep(3000);
 	int res_id = _getch();
-	if (res_id == 13) { break; }
+	if (res_id == 13) { exit; }  // Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÑÑ‚ÑŒ Ð²Ñ‹Ñ…Ð¾Ð´
 	else if (res_id < 1 || res_id > _userList.size())
 	{
-		std::cout << "Please, re-enter ID your recipient" << endl;
+		std::cout << "Please, re-enter ID of your recipient" << std::endl;
 		return;
 	}
 	else
 	{
 		res_id -= 1;
 		std::string name_recipient = _userList.at(res_id);
-		std::cout << "This message for: " << name_recipient << endl;
+		std::cout << "This message for: " << name_recipient << std::endl;
 		createMessage(user);
 	}
 }
@@ -68,6 +68,6 @@ void Chat::generalChat(User user)
 {
 	user.getName();
 	std::cout << "This is general chat" << std::endl;
-	std::cout << "User" << "==========" << user.getName << "==========" << "writes: " << endl;
+	std::cout << "User" << "==========" << user.getName() << "==========" << "writes: " << std::endl;
 	createMessage(user);
 }
