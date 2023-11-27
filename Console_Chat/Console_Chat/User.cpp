@@ -1,4 +1,4 @@
-#include "User.h"
+ï»¿#include "User.h"
 
 User::User(const std::string name, const std::string login, const std::string password) :
 	_name{ name }, _login{ login }, _password{ password } {}
@@ -41,11 +41,12 @@ void User::setPassword(std::string password)
 
 void User::showUser()
 {
-	std::cout << "Ëîãèí: " << _login << std::endl;
-	std::cout << "Èìÿ: " << _name << std::endl;
+	std::cout << "Ð˜Ð¼Ñ: " << _name << std::endl;
+	std::cout << "Ð›Ð¾Ð³Ð¸Ð½: " << _login << std::endl;
+	std::cout << "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ: " << _password << std::endl;
 }
 
 void User::showUserName()
 {
-	std::cout << "Èìÿ: " << _name << std::endl;
+	std::cout << "Ð˜Ð¼Ñ: " << _name << std::endl;
 }

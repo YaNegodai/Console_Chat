@@ -1,55 +1,51 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include "Chat.h"
 
 
 int actions(Chat* chat, bool* user_exist)
 {
     
-    std::cout << "\nÂâåäèòå êîä êîìàíäû : 0 - ðåãèñòðàöèÿ, 1 - ëîãèí, 2 - îòïðàâèòü ñîîáùåíèå,\n 3 - ñìåíèòü ïîëüçîâàòåëÿ, 4 - îáùèé ÷àò, 5 - ïðèâàòíûé ÷àò,\n 6 - ñïèñîê ïîëüçîâàòåëåé, q - âûõîä" << std::endl;
+    std::cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð´ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ : \n1 - Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ \n2 - Ð›Ð¾Ð³Ð¸Ð½ \n3 - Ð›Ð¾Ð³Ð°ÑƒÑ‚ \n4 - ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð»Ð¸Ñ‡Ð½Ð¾Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ \n5 - ÐžÐ±Ñ‰Ð¸Ð¹ Ñ‡Ð°Ñ‚ \n6 - Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹ \nq - Ð’Ñ‹Ñ…Ð¾Ð´" << std::endl;
     char* choice= new char;
     std::cin >> *choice;
     switch (*choice)
     {
-        case '0':
-        {
-            std::cout << "\nÂûïîëíÿåòñÿ ðåãèñòðàöèÿ íîâîãî ïîëüçîâàòåëÿ" << std::endl;
-            chat->regUser(user_exist);
-            break;
-        }
         case '1':
         {
-            std::cout << "\nÀâòîðèçàöèÿ" << std::endl;
+            std::cout << "\nÐ ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ Ð½Ð¾Ð²Ð¾Ð³Ð¾ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ" << std::endl;
+            chat->regUser(user_exist);
             break;
         }
         case '2':
         {
-            std::cout << "\nÂûáðàí ñèìâîë 2" << std::endl;
+            std::cout << "\nÐÐ²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ñ" << std::endl;
             break;
         }
         case '3':
         {
-            std::cout << "\nÂûáðàí ñèìâîë 3" << std::endl;
+            std::cout << "\nÐ›Ð¾Ð³Ð°ÑƒÑ‚" << std::endl;
             break;
         }
         case '4':
         {
-            std::cout << "\nÂûáðàí ñèìâîë 4" << std::endl;
+            std::cout << "\nÐžÑ‚Ð¿Ñ€Ð°Ð²ÐºÐ° Ð»Ð¸Ñ‡Ð½Ð¾Ð³Ð¾ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ" << std::endl;
             break;
         }
         case '5':
         {
-            std::cout << "\nÂûáðàí ñèìâîë 5" << std::endl;
+            std::cout << "\nÐžÐ±Ñ‰Ð¸Ð¹ Ñ‡Ð°Ñ‚" << std::endl;
             break;
         }
         case '6':
         {
-            std::cout << "\nÂûáðàí ñèìâîë 6" << std::endl;
+            std::cout << "\nÐ¡Ð¿Ð¸ÑÐ¾Ðº Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹" << std::endl;
             break;
         }
+
         case 'q':
         {
-            std::cout << "\nÇàêðûòèå ÷àòà\nÄî ñâèäàíèÿ!" << std::endl;
-            return 0;
+            std::cout << "\nÐ—Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ñ‡Ð°Ñ‚Ð°...\nÐ”Ð¾ ÑÐ²Ð¸Ð´Ð°Ð½Ð¸Ñ!" << std::endl;
+            exit(0);
         }
     }
     delete choice;

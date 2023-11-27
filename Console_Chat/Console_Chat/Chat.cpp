@@ -1,5 +1,6 @@
 ﻿#include "Chat.h"
 #include <conio.h>
+#include <Windows.h> 
 
 Chat::Chat()
 {
@@ -11,22 +12,29 @@ Chat::~Chat()
 
 }
 
+std::string Chat::readInput()
+{
+	std::string input;
+	std::getline(std::cin >> std::ws, input);
+	return input;
+}
+
+
+
 void Chat::regUser(bool* user_exist)
 {
 	User user;
 	*user_exist = true;
-	std::string temp;
-	std::cout << "\nВведите имя: ";
-	std::getline(std::cin, temp);
-	user.setName(temp);
+	
+	std::cout << "Введите имя: ";
+	
+	user.setName(readInput());
 
-	std::cout << "\nВведите логин: ";
-	std::getline(std::cin, temp);
-	user.setLogin(temp);
+	std::cout << "Введите логин: ";
+	user.setLogin(readInput());
 
-	std::cout << "\nВведите пароль: ";
-	std::getline(std::cin, temp);
-	user.setPassword(temp);
+	std::cout << "Введите пароль: ";
+	user.setPassword(readInput());
 
 	_userList.push_back(user);
 	std::cout << "\nВы зарегистрированны как:\n";
@@ -47,9 +55,9 @@ void Chat::privateChat(User user, User user2)
 	void ShowUserList();
 	std::cout << "Please, selecte recipient ID. You have a few seconds" << std::endl;
 	std::cout << "if you want to exit click ENTER" << std::endl;
-	_sleep(3000);
+	Sleep(3000);
 	int res_id = _getch();
-	if (res_id == 13) { exit; }  // должен выполнять выход
+	if (res_id == 13) { exit(0); }  // должен выполнять выход
 	else if (res_id < 1 || res_id > _userList.size())
 	{
 		std::cout << "Please, re-enter ID of your recipient" << std::endl;
@@ -58,8 +66,8 @@ void Chat::privateChat(User user, User user2)
 	else
 	{
 		res_id -= 1;
-		std::string name_recipient = _userList.at(res_id);
-		std::cout << "This message for: " << name_recipient << std::endl;
+		//std::string name_recipient = _userList.at(res_id);
+		//std::cout << "This message for: " << name_recipient << std::endl;
 		createMessage(user);
 	}
 }

@@ -10,6 +10,7 @@ class Chat
 public:
 	Chat();
 	~Chat();
+	std::string readInput();
 	void regUser(bool* user_exist);
 	void logInUser();
 	void logOutUser();
