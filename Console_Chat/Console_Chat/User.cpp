@@ -43,7 +43,6 @@ void User::showUser()
 {
 	std::cout << "Имя: " << _name << std::endl;
 	std::cout << "Логин: " << _login << std::endl;
-	std::cout << "Пароль: " << _password << std::endl;
 }
 
 void User::showUserName()

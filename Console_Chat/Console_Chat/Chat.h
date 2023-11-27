@@ -10,25 +10,33 @@ class Chat
 public:
 	Chat();
 	~Chat();
-	std::string readInput();
-	void regUser(bool* user_exist);
+	std::string readInput(); //считывает ввод с консоли и возвращает текст типа String
+	void regUser(bool* user_exist); // регистрация нового пользователя
+	void regChatForAll(); //регистрация общего чата
 	void logInUser();
 	void logOutUser();
 
-	void showUserList();
-	void addUserToList();
+	void setActiveUser(int id, std::string name, std::string login); //задает ID, имя и логин активного пользователя
+	std::string getActiveUserName();
+	std::string getActiveUserLogin();
+	std::string getActiveResLogin(); //логин получателя
+
+	void showUserList(); //отображает список зарегистрированных пользователей
+	void addUserToList(User* user); //добавляет нового пользователя в список
+	int listSize();
 
 	void createMessage(User user);
 	void privateChat(User user1, User user2);
 	void generalChat(User user);
+	void getResipient(int idResipient); // устанавливает получателя сообщения
 
 
 private:
-	std::vector<User> _userList;
-	std::vector<Message> _messageList;
-	std::string _activeUserLogin;
-	std::string _activeUserName;
-	std::string _activeResLogin;
+	std::vector<User> _userList; //список пользователей
+	std::vector<Message> _messageList; //список сообщений
+	std::string _activeUserLogin; //логин пользователя, используещего чат в данный момент 
+	std::string _activeUserName; //имя активного пользователя
+	std::string _activeResLogin; //логин получателя
 
 	int userID;
 	int resID;

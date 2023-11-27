@@ -38,7 +38,8 @@ int actions(Chat* chat, bool* user_exist)
         }
         case '6':
         {
-            std::cout << "\nСписок пользователей" << std::endl;
+            //std::cout << "\nСписок пользователей" << std::endl;
+            chat->showUserList();
             break;
         }
 
@@ -58,6 +59,7 @@ int main()
     Chat chat;
     bool user_exist{ false };
     actions(&chat, &user_exist);
+    chat.regChatForAll();
     return 0;
 }
 
