@@ -25,15 +25,15 @@ public:
 	void addUserToList(User* user); //добавляет нового пользователя в список
 	int listSize();
 
-	void createMessage(User user);
-	void privateChat(User user1, User user2);
+	void privateChat(User user);
 	void generalChat(User user);
-	void getResipient(int idResipient); // устанавливает получателя сообщения
+	std::string getResipient(int idResipient); // устанавливает получателя сообщения
 
 
 private:
 	std::vector<User> _userList; //список пользователей
 	std::vector<Message> _messageList; //список сообщений
+	std::vector<Message> _messageList_priv; // приватный список сообщений
 	std::string _activeUserLogin; //логин пользователя, используещего чат в данный момент 
 	std::string _activeUserName; //имя активного пользователя
 	std::string _activeResLogin; //логин получателя

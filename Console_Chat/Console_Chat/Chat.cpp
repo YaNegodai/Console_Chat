@@ -96,23 +96,17 @@ int Chat::listSize()
 	return _userList.size();
 }
 
-void Chat::createMessage(User user)
+void Chat::privateChat(User user) // можно попробовать без юзера, а может и не можно
 {
 	Message message(user.getName());
-	message.writeMessage();
-	return message.showMessage();
-}
-
-void Chat::privateChat(User user, User user2)
-{
 	std::cout << "Welcome to private chat" << std::endl;
 	void ShowUserList();
 	std::cout << "Please, selecte recipient ID. You have a few seconds" << std::endl;
 	std::cout << "if you want to exit click ENTER" << std::endl;
 	Sleep(3000);
 	int res_id = _getch();
-	if (res_id == 13) { exit(0); }  // должен выполнять выход
-	else if (res_id < 1 || res_id > _userList.size())
+	if (res_id == 13) { exit(0); }  // должен выполнять выход с консоли
+	else if (res_id < 1 || res_id > listSize())
 	{
 		std::cout << "Please, re-enter ID of your recipient" << std::endl;
 		return;
@@ -120,16 +114,22 @@ void Chat::privateChat(User user, User user2)
 	else
 	{
 		res_id -= 1;
-		//std::string name_recipient = _userList.at(res_id);				//пока закомментил, для проверки основного кода
-		//std::cout << "This message for: " << name_recipient << std::endl;
-		createMessage(user);
+		std::cout << "This message for: " << getResipient(res_id) << std::endl;
+		message.createMessage();
+		_messageList_priv.push_back(message);
 	}
 }
 
 void Chat::generalChat(User user) 
 {
-	user.getName();
+	Message message(user.getName());
 	std::cout << "This is general chat" << std::endl;
 	std::cout << "User" << "==========" << user.getName() << "==========" << "writes: " << std::endl;
-	createMessage(user);
+	message.createMessage();
+	_messageList.push_back(message);
+}
+
+std::string Chat::getResipient(int idResipient)
+{
+	_userList.at(idResipient).getName();
 }
