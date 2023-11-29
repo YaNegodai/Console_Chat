@@ -19,6 +19,8 @@ public:
 	void setPassword(std::string password);
 	void showUser();
 	void showUserName();
+	void clearLogin();
+	void clearName();
 	
 private:
 	std::string _name;

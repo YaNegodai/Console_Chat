@@ -19,15 +19,10 @@ std::string Chat::readInput()
 	return input;
 }
 
-
-
-void Chat::regUser(bool* user_exist)
+void Chat::userDataInput(User& user)
 {
-	User user;
-	*user_exist = true;
-	
 	std::cout << "Введите имя: ";
-	
+
 	user.setName(readInput());
 
 	std::cout << "Введите логин: ";
@@ -35,12 +30,28 @@ void Chat::regUser(bool* user_exist)
 
 	std::cout << "Введите пароль: ";
 	user.setPassword(readInput());
+}
 
-	addUserToList(user);
-	std::cout << "\nВы зарегистрированны как:\n";
-	user.showUser();
-	size_t size = _userList.size() - 1;
-	setActiveUser(size, _userList.at(size).getName(), _userList.at(size).getLogin());
+
+
+void Chat::regUser(bool* user_exist)
+{
+	User user;
+	*user_exist = true;
+	
+	userDataInput(user);
+	bool check = false;
+	isAvailable(user, check);
+	if (check)
+	{
+		addUserToList(user);
+		std::cout << "\nВы зарегистрированны как:\n";
+		user.showUser();
+		size_t size = _userList.size() - 1;
+		setActiveUser(size, _userList.at(size).getName(), _userList.at(size).getLogin());
+	}
+	else
+		userDataInput(user);
 }
 
 void Chat::regChatForAll()
@@ -62,6 +73,30 @@ void Chat::logOutUser()
 	userID = 0;
 	_activeUserName = '\0';
 	_activeUserLogin = '\0';
+}
+
+void Chat::isAvailable(User user, bool& check)
+{
+	do
+	{
+		check = true;
+		for (User all : _userList)
+		{
+			if (user.getName() == all.getName())
+			{
+				user.clearName();
+				std::cout << "Данное имя занято, выберете другое\n";
+				check = false;
+				break;
+			}else if (user.getLogin() == all.getLogin())
+			{
+				user.clearLogin();
+				std::cout << "Данный логин занят, выберете другой\n";
+				check = false;
+				break;
+			}
+		}
+	} while (!check);
 }
 
 

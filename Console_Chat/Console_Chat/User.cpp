@@ -49,3 +49,13 @@ void User::showUserName()
 {
 	std::cout << _name << std::endl;
 }
+
+void User::clearLogin()
+{
+	_login.clear();
+}
+
+void User::clearName()
+{
+	_name.clear();
+}
