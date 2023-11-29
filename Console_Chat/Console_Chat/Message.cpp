@@ -20,6 +20,11 @@ Message::Message(std::string name) : _name(name)
 
 }
 
+Message::Message()
+{
+
+}
+
 Message::~Message()
 {
 
@@ -28,6 +33,11 @@ Message::~Message()
 void Message::createMessage()
 {
 	std::getline(std::cin >> std::ws, _message); // вроде поправила
+	std::cout << "Sender: " << _name << std::endl << "send message: " << _message << std::endl;
+}
+
+void Message::showMessage()
+{
 	std::cout << "Sender: " << _name << std::endl << "send message: " << _message << std::endl;
 }
 

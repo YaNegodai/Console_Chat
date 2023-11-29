@@ -10,35 +10,37 @@ class Chat
 public:
 	Chat();
 	~Chat();
-	std::string readInput(); //считывает ввод с консоли и возвращает текст типа String
-	void userDataInput(User& user); //ввод имени, логина и пароля пользователя
-	void regUser(bool* user_exist); // регистрация нового пользователя
-	void regChatForAll(); //регистрация общего чата
+	std::string readInput(); //СЃС‡РёС‚С‹РІР°РµС‚ РІРІРѕРґ СЃ РєРѕРЅСЃРѕР»Рё Рё РІРѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСЃС‚ С‚РёРїР° String
+	void userDataInput(User& user); //РІРІРѕРґ РёРјРµРЅРё, Р»РѕРіРёРЅР° Рё РїР°СЂРѕР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+	void regUser(bool* user_exist); // СЂРµРіРёСЃС‚СЂР°С†РёСЏ РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+	void regChatForAll(); //СЂРµРіРёСЃС‚СЂР°С†РёСЏ РѕР±С‰РµРіРѕ С‡Р°С‚Р°
 	void logInUser();
 	void logOutUser();
-	void isAvailable(User user, bool& check); // проверяет, заняты ли логин и пароль
+	void isAvailable(User user, bool& check); // РїСЂРѕРІРµСЂСЏРµС‚, Р·Р°РЅСЏС‚С‹ Р»Рё Р»РѕРіРёРЅ Рё РїР°СЂРѕР»СЊ
 
-	void setActiveUser(int id, std::string name, std::string login); //задает ID, имя и логин активного пользователя
+	void setActiveUser(int id, std::string name, std::string login); //Р·Р°РґР°РµС‚ ID, РёРјСЏ Рё Р»РѕРіРёРЅ Р°РєС‚РёРІРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	std::string getActiveUserName();
 	std::string getActiveUserLogin();
-	std::string getActiveResLogin(); //логин получателя
+	std::string getActiveResLogin(); //Р»РѕРіРёРЅ РїРѕР»СѓС‡Р°С‚РµР»СЏ
 
-	void showUserList(); //отображает список зарегистрированных пользователей
-	void addUserToList(User user); //добавляет нового пользователя в список
+	void showUserList(); //РѕС‚РѕР±СЂР°Р¶Р°РµС‚ СЃРїРёСЃРѕРє Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+	void addUserToList(User user); //РґРѕР±Р°РІР»СЏРµС‚ РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ СЃРїРёСЃРѕРє
 	size_t listSize();
 
 	void privateChat(User user);
 	void generalChat(User user);
-	std::string getResipient(int idResipient); // устанавливает получателя сообщения
+	std::string getResipient(int idResipient); // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РїРѕР»СѓС‡Р°С‚РµР»СЏ СЃРѕРѕР±С‰РµРЅРёСЏ
+	void receive_priv_Message(User user, int ID_user);
+	void recive_Message();
 
 
 private:
-	std::vector<User> _userList; //список пользователей
-	std::vector<Message> _messageList; //список сообщений
-	std::vector<Message> _messageList_priv; // приватный список сообщений
-	std::string _activeUserLogin; //логин пользователя, используещего чат в данный момент 
-	std::string _activeUserName; //имя активного пользователя
-	std::string _activeResLogin; //логин получателя
+	std::vector<User> _userList; //СЃРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+	std::vector<Message> _messageList; //СЃРїРёСЃРѕРє СЃРѕРѕР±С‰РµРЅРёР№
+	std::vector<Message> _messageList_priv; // РїСЂРёРІР°С‚РЅС‹Р№ СЃРїРёСЃРѕРє СЃРѕРѕР±С‰РµРЅРёР№
+	std::string _activeUserLogin; //Р»РѕРіРёРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ, РёСЃРїРѕР»СЊР·СѓРµС‰РµРіРѕ С‡Р°С‚ РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ 
+	std::string _activeUserName; //РёРјСЏ Р°РєС‚РёРІРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+	std::string _activeResLogin; //Р»РѕРіРёРЅ РїРѕР»СѓС‡Р°С‚РµР»СЏ
 
 	int userID = 0;
 	int resID = 0;

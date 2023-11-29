@@ -165,7 +165,8 @@ void Chat::privateChat(User user) // можно попробовать без ю
 		res_id -= 1;
 		std::cout << "This message for: " << getResipient(res_id) << std::endl;
 		message.createMessage();
-		_messageList_priv.push_back(message);
+		_messageList_priv[res_id] = message; // не знаю можно ли так. Записывать в вектор на нужное место, в соответствии с номером получателя
+		//_messageList_priv.push_back(message);
 	}
 }
 
@@ -181,4 +182,18 @@ void Chat::generalChat(User user)
 std::string Chat::getResipient(int idResipient)
 {
 	return _userList.at(idResipient).getName();
+}
+
+void Chat::receive_priv_Message(User user, int ID_user)
+{
+	_userList.at(ID_user).showUserName();
+	for (Message mes : _messageList_priv)
+		return mes.showMessage();
+}
+
+void Chat::recive_Message()
+{
+	for (Message mes : _messageList)
+		return mes.showMessage();
+	//return _messageList.at(_messageList.size());
 }

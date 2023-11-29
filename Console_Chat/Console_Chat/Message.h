@@ -4,9 +4,9 @@
 class Message
 {
 private:
-	std::string _message; //текст сообщения
-	std::string _name; //имя отправителя
-	std::string _login; //логин отправителя
+	std::string _message; //С‚РµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ
+	std::string _name; //РёРјСЏ РѕС‚РїСЂР°РІРёС‚РµР»СЏ
+	std::string _login; //Р»РѕРіРёРЅ РѕС‚РїСЂР°РІРёС‚РµР»СЏ
 	std::string _name_recipient;
 
 public:
@@ -14,9 +14,11 @@ public:
 	Message(std::string login, std::string name, std::string message);
 	Message(std::string name, std::string message);
 	Message(std::string name);
+	Message();
 	~Message();
 
 	void createMessage();
 	std::string getMessage();
+	void showMessage();
 	};
 
