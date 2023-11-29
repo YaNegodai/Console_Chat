@@ -23,33 +23,45 @@ std::string Chat::readInput()
 
 void Chat::regUser(bool* user_exist)
 {
-	User* user;
+	User user;
 	*user_exist = true;
 	
 	std::cout << "Введите имя: ";
 	
-	user->setName(readInput());
+	user.setName(readInput());
 
 	std::cout << "Введите логин: ";
-	user->setLogin(readInput());
+	user.setLogin(readInput());
 
 	std::cout << "Введите пароль: ";
-	user->setPassword(readInput());
+	user.setPassword(readInput());
 
 	addUserToList(user);
 	std::cout << "\nВы зарегистрированны как:\n";
-	user->showUser();
-	int size = _userList.size() - 1;
+	user.showUser();
+	size_t size = _userList.size() - 1;
 	setActiveUser(size, _userList.at(size).getName(), _userList.at(size).getLogin());
 }
 
 void Chat::regChatForAll()
 {
-	User* chatForAll;
-	chatForAll->setName("ChatForAll");
-	chatForAll->setLogin("AllUsers");
-	chatForAll->setName("password");
-	addUserToList(chatForAll);
+	User user;
+	user.setName("Общий чат");
+	user.setLogin("AllUsers");
+	user.setPassword("password");
+	addUserToList(user);
+}
+
+void Chat::logInUser()
+{
+
+}
+
+void Chat::logOutUser()
+{
+	userID = 0;
+	_activeUserName = '\0';
+	_activeUserLogin = '\0';
 }
 
 
@@ -79,19 +91,21 @@ void Chat::showUserList()
 {
 	int id{ 0 };
 	std::cout << "\nСписок участников чата:\n";
+	
 	for (User user : _userList)
 	{
 		id++;
+		std::cout << id << " - ";
 		user.showUserName();
 	}
 }
 
-void Chat::addUserToList(User* user)
+void Chat::addUserToList(User user)
 {
-	_userList.push_back(*user);
+	_userList.push_back(user);
 }
 
-int Chat::listSize()
+size_t Chat::listSize()
 {
 	return _userList.size();
 }
@@ -131,5 +145,5 @@ void Chat::generalChat(User user)
 
 std::string Chat::getResipient(int idResipient)
 {
-	_userList.at(idResipient).getName();
+	return _userList.at(idResipient).getName();
 }

@@ -58,8 +58,8 @@ int main()
     setlocale(LC_ALL, "");
     Chat chat;
     bool user_exist{ false };
-    actions(&chat, &user_exist);
     chat.regChatForAll();
+    actions(&chat, &user_exist);
     return 0;
 }
 

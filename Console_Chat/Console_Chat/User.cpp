@@ -47,5 +47,5 @@ void User::showUser()
 
 void User::showUserName()
 {
-	std::cout << "Имя: " << _name << std::endl;
+	std::cout << _name << std::endl;
 }

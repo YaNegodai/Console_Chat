@@ -22,8 +22,8 @@ public:
 	std::string getActiveResLogin(); //логин получателя
 
 	void showUserList(); //отображает список зарегистрированных пользователей
-	void addUserToList(User* user); //добавляет нового пользователя в список
-	int listSize();
+	void addUserToList(User user); //добавляет нового пользователя в список
+	size_t listSize();
 
 	void privateChat(User user);
 	void generalChat(User user);
