@@ -122,6 +122,11 @@ std::string Chat::getActiveResLogin()
 	return _activeResLogin;
 }
 
+int Chat::getActiveUserID()
+{
+	return userID;
+}
+
 void Chat::showUserList()
 {
 	int id{ 0 };
@@ -145,9 +150,10 @@ size_t Chat::listSize()
 	return _userList.size();
 }
 
-void Chat::privateChat(User user) // можно попробовать без юзера, а может и не можно
+void Chat::privateChat() // можно попробовать без юзера, а может и не можно
 {
-	Message message(user.getName());
+
+	Message message;
 	std::cout << "Welcome to private chat" << std::endl;
 	void ShowUserList();
 	std::cout << "Please, selecte recipient ID. You have a few seconds" << std::endl;
@@ -170,12 +176,12 @@ void Chat::privateChat(User user) // можно попробовать без ю
 	}
 }
 
-void Chat::generalChat(User user) 
+void Chat::generalChat() 
 {
-	Message message(user.getName());
+	Message message;
 	std::cout << "This is general chat" << std::endl;
-	std::cout << "User" << "==========" << user.getName() << "==========" << "writes: " << std::endl;
 	message.createMessage();
+	message.showMessage();
 	_messageList.push_back(message);
 }
 
@@ -184,7 +190,7 @@ std::string Chat::getResipient(int idResipient)
 	return _userList.at(idResipient).getName();
 }
 
-void Chat::receive_priv_Message(User user, int ID_user)
+void Chat::receive_priv_Message(int ID_user)
 {
 	_userList.at(ID_user).showUserName();
 	for (Message mes : _messageList_priv)
@@ -195,5 +201,4 @@ void Chat::recive_Message()
 {
 	for (Message mes : _messageList)
 		return mes.showMessage();
-	//return _messageList.at(_messageList.size());
 }

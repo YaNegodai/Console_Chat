@@ -22,15 +22,16 @@ public:
 	std::string getActiveUserName();
 	std::string getActiveUserLogin();
 	std::string getActiveResLogin(); //логин получателя
+	int getActiveUserID();
 
 	void showUserList(); //отображает список зарегистрированных пользователей
 	void addUserToList(User user); //добавляет нового пользователя в список
 	size_t listSize();
 
-	void privateChat(User user);
-	void generalChat(User user);
+	void privateChat();
+	void generalChat();
 	std::string getResipient(int idResipient); // устанавливает получателя сообщения
-	void receive_priv_Message(User user, int ID_user);
+	void receive_priv_Message(int ID_user);
 	void recive_Message();
 
 

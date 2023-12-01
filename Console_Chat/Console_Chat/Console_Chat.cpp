@@ -5,7 +5,7 @@
 int actions(Chat* chat, bool* user_exist)
 {
     
-    std::cout << "\nВведите код команды : \n1 - Регистрация \n2 - Логин \n3 - Логаут \n4 - Отправить личное сообщение \n5 - Общий чат \n6 - Список пользователей \nq - Выход" << std::endl;
+    std::cout << "\nВведите код команды : \n1 - Регистрация \n2 - Логин \n3 - Логаут \n4 - Отправить личное сообщение \n5 - Общий чат \n6 - Список пользователей \n7 - Просмотр личных сообщений \n8 - Просмотр общего чата \nq - Выход" << std::endl;
     char* choice= new char;
     std::cin >> *choice;
     switch (*choice)
@@ -29,17 +29,34 @@ int actions(Chat* chat, bool* user_exist)
         case '4':
         {
             std::cout << "\nОтправка личного сообщения" << std::endl;
+            chat->privateChat();
             break;
         }
         case '5':
         {
             std::cout << "\nОбщий чат" << std::endl;
+            chat->generalChat();
             break;
         }
         case '6':
         {
             //std::cout << "\nСписок пользователей" << std::endl;
             chat->showUserList();
+            break;
+        }
+
+        case '7':
+        {
+            std::cout << "Просмотр личных сообщений" << std::endl;
+            chat->receive_priv_Message(chat->getActiveUserID());
+            break;
+
+        }
+
+        case '8':
+        {
+            std::cout << "Просмотр общего чата" << std::endl;
+            chat->recive_Message();
             break;
         }
 
