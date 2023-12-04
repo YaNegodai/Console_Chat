@@ -16,7 +16,7 @@ public:
 	void regChatForAll(); //регистрация общего чата
 	void logInUser();
 	void logOutUser();
-	void isAvailable(User user, bool& check); // проверяет, заняты ли логин и пароль
+	void isAvailable(User& user, bool& check); // проверяет, заняты ли логин и пароль
 
 	void setActiveUser(int id, std::string name, std::string login); //задает ID, имя и логин активного пользователя
 	std::string getActiveUserName();
