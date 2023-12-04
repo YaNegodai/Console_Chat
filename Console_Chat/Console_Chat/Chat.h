@@ -11,10 +11,11 @@ public:
 	Chat();
 	~Chat();
 	std::string readInput(); //считывает ввод с консоли и возвращает текст типа String
-	void userDataInput(User& user); //ввод имени, логина и пароля пользователя
-	void regUser(bool* user_exist); // регистрация нового пользователя
+	void userDataInput(User& user); //ввод имени, логина и пароля пользователя4
+	void logInInput(User& user); //ввод только имени и пароля, используется для входа в аккаунт 
+	void regUser(bool* userExist); // регистрация нового пользователя
 	void regChatForAll(); //регистрация общего чата
-	void logInUser();
+	void logInUser(bool* userExist);
 	void logOutUser();
 	void isAvailable(User& user, bool& check); // проверяет, заняты ли логин и пароль
 
