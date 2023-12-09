@@ -50,7 +50,7 @@ int actions(Chat* chat, bool* user_exist)
         case '7':
         {
             std::cout << "Просмотр личных сообщений" << std::endl;
-            chat->receive_priv_Message(chat->getActiveUserID());
+            chat->receive_priv_Message();
             break;
 
         }

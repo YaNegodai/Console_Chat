@@ -17,8 +17,13 @@ public:
 	Message();
 	~Message();
 
-	void createMessage();
+	void createMessage(std::string name);
+	void showMessage(std::string name);
 	std::string getMessage();
-	void showMessage();
+
+	void createMessage_priv(std::string name, std::string _name_recipient);
+	void showMessage_priv(std::string name, std::string _name_recipient);
+	
+
 	};
 

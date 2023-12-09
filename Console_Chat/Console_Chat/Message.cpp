@@ -30,15 +30,26 @@ Message::~Message()
 
 }
 
-void Message::createMessage()
+void Message::createMessage(std::string name)
 {
-	std::getline(std::cin >> std::ws, _message); // вроде поправила
-	//std::cout << "Sender: " << _name << std::endl << "send message: " << _message << std::endl;
+	std::getline(std::cin >> std::ws, _message);
+	std::cout << "You create message" << std::endl << "Sender: " << name << std::endl << "send message: " << _message << std::endl;
 }
 
-void Message::showMessage()
+void Message::showMessage(std::string name)
 {
-	std::cout << "Sender: " << _name << std::endl << "send message: " << _message << std::endl;
+	std::cout << "Sender: " << name << std::endl << "send message: " << _message << std::endl;
+}
+
+void Message::createMessage_priv(std::string name, std::string _name_recipient)
+{
+	std::getline(std::cin >> std::ws, _message);
+	std::cout << "You create message for: " << _name_recipient << std::endl << "Sender: " << name << std::endl << "send message: " << _message << std::endl;
+}
+
+void Message::showMessage_priv(std::string name, std::string _name_recipient)
+{
+	std::cout << "This is private message" << std::endl << "Sender: " << name << std::endl << "send message: " << _message << std::endl;
 }
 
 std::string Message::getMessage()

@@ -1,6 +1,8 @@
 ﻿#include "Chat.h"
 #include <conio.h>
 #include <Windows.h> 
+#include <iostream>
+#include <string>
 
 Chat::Chat()
 {
@@ -187,40 +189,37 @@ size_t Chat::listSize()
 	return _userList.size();
 }
 
-void Chat::privateChat() // можно попробовать без юзера, а может и не можно
+void Chat::privateChat()
 {
 
 	Message message;
-	std::cout << "Welcome to private chat" << std::endl;
-	showUserList();
-	std::cout << "Please, select recipient ID. You have a few seconds" << std::endl;
-	std::cout << "if you want to exit click Esc" << std::endl;
-	//Sleep(3000);
-	//int res_id = _getch();
-	int res_id;
-	std::cin >> res_id;
-	if (res_id == 99) { exit(0); }  // должен выполнять выход с консоли
-	else if (res_id < 1 || res_id > listSize())
-	{
-		std::cout << "Please, re-enter ID of your recipient" << std::endl;
-		return;
-	}
-	else
-	{
-		res_id -= 1;
-		std::cout << "This message for: " << getResipient(res_id) << std::endl;
-		message.createMessage();
-		_messageList_priv[res_id] = message; // не знаю можно ли так. Записывать в вектор на нужное место, в соответствии с номером получателя
-		//_messageList_priv.push_back(message);
-	}
+
+		std::cout << "Welcome to private chat" << std::endl;
+		showUserList();
+		std::cout << "Please, select recipient ID. You have a few seconds" << std::endl;
+		std::cout << "if you want to exit click 99" << std::endl;
+		int res_id;
+		std::cin >> res_id;
+		if (res_id == 99) { return; }
+		else if (res_id < 1 || res_id > listSize())
+		{
+			std::cout << "Please, re-enter ID of your recipient" << std::endl;
+			return;
+		}
+		else
+		{
+			res_id -= 1;
+			std::cout << "This message for: " << getResipient(res_id) << std::endl;
+			message.createMessage_priv(getActiveUserName(), getResipient(res_id));
+			_messageList_priv.push_back(message);
+		}
 }
 
 void Chat::generalChat() 
 {
 	Message message;
 	std::cout << "This is general chat" << std::endl;
-	message.createMessage();
-	message.showMessage();
+	message.createMessage(getActiveUserName());
 	_messageList.push_back(message);
 }
 
@@ -229,15 +228,19 @@ std::string Chat::getResipient(int idResipient)
 	return _userList.at(idResipient).getName();
 }
 
-void Chat::receive_priv_Message(int ID_user)
+void Chat::receive_priv_Message()
 {
-	_userList.at(ID_user).showUserName();
+
 	for (Message mes : _messageList_priv)
-		return mes.showMessage();
+		return mes.showMessage_priv(getActiveUserName(), getActiveResLogin());
 }
 
 void Chat::recive_Message()
 {
-	for (Message mes : _messageList)
-		return mes.showMessage();
+	if (_messageList.size() == 0)
+		std::cout << "No message in the CHAT" << std::endl;
+	else {
+		for (Message mes : _messageList)
+			mes.showMessage(getActiveUserName());
+	}
 }

@@ -32,7 +32,7 @@ public:
 	void privateChat();
 	void generalChat();
 	std::string getResipient(int idResipient); // устанавливает получателя сообщения
-	void receive_priv_Message(int ID_user);
+	void receive_priv_Message();
 	void recive_Message();
 
 
