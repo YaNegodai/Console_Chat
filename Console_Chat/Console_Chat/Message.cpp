@@ -33,7 +33,7 @@ Message::~Message()
 void Message::createMessage()
 {
 	std::getline(std::cin >> std::ws, _message); // вроде поправила
-	std::cout << "Sender: " << _name << std::endl << "send message: " << _message << std::endl;
+	//std::cout << "Sender: " << _name << std::endl << "send message: " << _message << std::endl;
 }
 
 void Message::showMessage()

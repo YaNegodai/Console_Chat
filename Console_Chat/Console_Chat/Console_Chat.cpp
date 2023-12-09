@@ -19,11 +19,13 @@ int actions(Chat* chat, bool* user_exist)
         case '2':
         {
             std::cout << "\nАвторизация" << std::endl;
+            chat->logInUser(user_exist);
             break;
         }
         case '3':
         {
             std::cout << "\nЛогаут" << std::endl;
+            chat->logOutUser();
             break;
         }
         case '4':

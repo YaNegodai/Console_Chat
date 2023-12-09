@@ -192,12 +192,14 @@ void Chat::privateChat() // можно попробовать без юзера,
 
 	Message message;
 	std::cout << "Welcome to private chat" << std::endl;
-	void ShowUserList();
-	std::cout << "Please, selecte recipient ID. You have a few seconds" << std::endl;
-	std::cout << "if you want to exit click ENTER" << std::endl;
-	Sleep(3000);
-	int res_id = _getch();
-	if (res_id == 13) { exit(0); }  // должен выполнять выход с консоли
+	showUserList();
+	std::cout << "Please, select recipient ID. You have a few seconds" << std::endl;
+	std::cout << "if you want to exit click Esc" << std::endl;
+	//Sleep(3000);
+	//int res_id = _getch();
+	int res_id;
+	std::cin >> res_id;
+	if (res_id == 99) { exit(0); }  // должен выполнять выход с консоли
 	else if (res_id < 1 || res_id > listSize())
 	{
 		std::cout << "Please, re-enter ID of your recipient" << std::endl;
