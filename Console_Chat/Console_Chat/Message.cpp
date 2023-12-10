@@ -33,23 +33,23 @@ Message::~Message()
 void Message::createMessage(std::string name)
 {
 	std::getline(std::cin >> std::ws, _message);
-	std::cout << "You create message" << std::endl << "Sender: " << name << std::endl << "send message: " << _message << std::endl;
+	std::cout << "Вы создали сообщение" << std::endl << "Отправитель: " << name << std::endl << "текст сообщения: " << _message << std::endl;
 }
 
 void Message::showMessage(std::string name)
 {
-	std::cout << "Sender: " << name << std::endl << "send message: " << _message << std::endl;
+	std::cout << "Отправитель: " << name << std::endl << "текст сообщения: " << _message << std::endl;
 }
 
 void Message::createMessage_priv(std::string name, std::string _name_recipient)
 {
 	std::getline(std::cin >> std::ws, _message);
-	std::cout << "You create message for: " << _name_recipient << std::endl << "Sender: " << name << std::endl << "send message: " << _message << std::endl;
+	std::cout << "Вы написали сообщение для: " << _name_recipient << std::endl << "Отправитель: " << name << std::endl << "текст сообщения: " << _message << std::endl;
 }
 
 void Message::showMessage_priv(std::string name, std::string _name_recipient)
 {
-	std::cout << "This is private message" << std::endl << "Sender: " << name << std::endl << "send message: " << _message << std::endl;
+	std::cout << "Это сообщение для получателя:  " << _name_recipient << std::endl << "Отправитель: " << name << std::endl << "текст сообщения: " << _message << std::endl;
 }
 
 std::string Message::getMessage()

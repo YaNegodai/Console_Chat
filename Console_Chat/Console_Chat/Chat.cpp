@@ -156,6 +156,12 @@ std::string Chat::getActiveUserLogin()
 	return _activeUserLogin;
 }
 
+void Chat::setResName(int id, std::string name) 
+{
+	resID = id;
+	_activeResLogin = name;
+}
+
 std::string Chat::getActiveResLogin()
 {
 	return _activeResLogin;
@@ -194,23 +200,23 @@ void Chat::privateChat()
 
 	Message message;
 
-		std::cout << "Welcome to private chat" << std::endl;
+		std::cout << "Добро пожаловать в приватный чат" << std::endl;
 		showUserList();
-		std::cout << "Please, select recipient ID. You have a few seconds" << std::endl;
-		std::cout << "if you want to exit click 99" << std::endl;
+		std::cout << "Если хотите выйти, нажмите 99 и ENTER" << std::endl;
 		int res_id;
 		std::cin >> res_id;
 		if (res_id == 99) { return; }
 		else if (res_id < 1 || res_id > listSize())
 		{
-			std::cout << "Please, re-enter ID of your recipient" << std::endl;
+			std::cout << "Пожалуйста, введите существующий номер пользователя" << std::endl;
 			return;
 		}
 		else
 		{
 			res_id -= 1;
-			std::cout << "This message for: " << getResipient(res_id) << std::endl;
-			message.createMessage_priv(getActiveUserName(), getResipient(res_id));
+			setResName(res_id, getResipient(res_id));
+			std::cout << "Сообщение для: " << getResipient(res_id) << std::endl;
+			message.createMessage_priv(getActiveUserName(), getActiveResLogin());
 			_messageList_priv.push_back(message);
 		}
 }
@@ -218,7 +224,7 @@ void Chat::privateChat()
 void Chat::generalChat() 
 {
 	Message message;
-	std::cout << "This is general chat" << std::endl;
+	std::cout << "Это общий чат" << std::endl;
 	message.createMessage(getActiveUserName());
 	_messageList.push_back(message);
 }
@@ -230,15 +236,18 @@ std::string Chat::getResipient(int idResipient)
 
 void Chat::receive_priv_Message()
 {
-
-	for (Message mes : _messageList_priv)
-		return mes.showMessage_priv(getActiveUserName(), getActiveResLogin());
+	if (_messageList_priv.size() == 0) 
+		std::cout << "Нет сообщений в приватном чате" << std::endl;
+	else {
+		for (Message mes : _messageList_priv)
+			return mes.showMessage_priv(getActiveUserName(), getActiveResLogin());
+	}
 }
 
 void Chat::recive_Message()
 {
 	if (_messageList.size() == 0)
-		std::cout << "No message in the CHAT" << std::endl;
+		std::cout << "Нет сообщений в общем чате" << std::endl;
 	else {
 		for (Message mes : _messageList)
 			mes.showMessage(getActiveUserName());

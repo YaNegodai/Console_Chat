@@ -22,6 +22,7 @@ public:
 	void setActiveUser(int id, std::string name, std::string login); //задает ID, имя и логин активного пользователя
 	std::string getActiveUserName();
 	std::string getActiveUserLogin();
+	void setResName(int id, std::string name);
 	std::string getActiveResLogin(); //логин получателя
 	int getActiveUserID();
 
