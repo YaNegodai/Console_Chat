@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <windows.h>
 #include "Chat.h"
 
 
@@ -75,6 +76,8 @@ int actions(Chat* chat, bool* user_exist)
 int main()
 {
     setlocale(LC_ALL, "");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
     Chat chat;
     bool user_exist{ false };
     chat.regChatForAll();
