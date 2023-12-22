@@ -47,9 +47,7 @@ void Chat::logInInput(User& user)
 
 void Chat::regUser(bool* userExist)
 {
-	User user;
-	*userExist = true;
-	
+	User user;	
 	userDataInput(user);
 	bool check = true;
 	isAvailable(user, check);
@@ -62,21 +60,13 @@ void Chat::regUser(bool* userExist)
 		size_t size = _userList.size() - 1;
 		if (userExist) 
 		{
-			setActiveUser(size, _userList.at(size).getName(), _userList.at(size).getLogin());
+			setActiveUser(userExist,size, _userList.at(size).getName(), _userList.at(size).getLogin());
 		}
 		else
 			return;
 	}
 }
 
-void Chat::regChatForAll()
-{
-	User user;
-	user.setName("Общий чат");
-	user.setLogin("AllUsers");
-	user.setPassword("password");
-	addUserToList(user);
-}
 
 void Chat::logInUser(bool* userExist)
 {
@@ -86,27 +76,28 @@ void Chat::logInUser(bool* userExist)
 	size_t counter = 0;
 	for (User all : _userList)
 	{
-		if ((userDataCheck.getLogin() == all.getLogin()) && (userDataCheck.getPassword() == all.getPassword()))
+		if (userDataCheck.getLogin() == all.getLogin() && userDataCheck.getPassword() == all.getPassword())
 		{
-			setActiveUser(counter, all.getName(), all.getLogin());
+			setActiveUser(userExist ,counter, all.getName(), all.getLogin());
 			std::cout << "\n\nВы вошли как:\n\n";
 			_userList.at(counter).showUser();
 			*userExist = true;
 		}
 		counter++;
 	}
-	if (!userExist)
+	if (*userExist == false)
 	{
 		std::cout << "\nНеверный логин или пароль\n";
-		return;
+		
 	}
 }
 
-void Chat::logOutUser()
+void Chat::logOutUser(bool* userExist)
 {
+	*userExist = false;
 	userID = 0;
-	_activeUserName = '\0';
-	_activeUserLogin = '\0';
+	_activeUserName.clear();
+	_activeUserLogin.clear();
 }
 
 void Chat::isAvailable(User& user, bool& check)
@@ -139,11 +130,21 @@ void Chat::isAvailable(User& user, bool& check)
 }
 
 
-void Chat::setActiveUser(int id, std::string name, std::string login)
+void Chat::setActiveUser(bool* userExist, int id, std::string name, std::string login)
 {
+	*userExist = true;
 	userID = id;
 	_activeUserName = name;
 	_activeUserLogin = login;
+}
+
+bool Chat::checkForActiveUser()
+{
+	if (_activeUserName.empty() && _activeUserLogin.empty()) {
+		return false;
+	}
+	else
+		return true;
 }
 
 std::string Chat::getActiveUserName()
@@ -200,7 +201,7 @@ void Chat::privateChat()
 
 	Message message;
 
-		std::cout << "Добро пожаловать в приватный чат" << std::endl;
+		std::cout << "Добро пожаловать в приватный чат!" << std::endl;
 		showUserList();
 		std::cout << "Если хотите выйти, нажмите 99 и ENTER" << std::endl;
 		int res_id;
@@ -208,7 +209,7 @@ void Chat::privateChat()
 		if (res_id == 99) { return; }
 		else if (res_id < 1 || res_id > listSize())
 		{
-			std::cout << "Пожалуйста, введите существующий номер пользователя" << std::endl;
+			std::cout << "Несуществующий номер пользователя" << std::endl;
 			return;
 		}
 		else
