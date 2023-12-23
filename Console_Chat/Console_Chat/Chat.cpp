@@ -200,34 +200,56 @@ void Chat::privateChat()
 {
 
 	Message message;
-
-		std::cout << "Добро пожаловать в приватный чат!" << std::endl;
-		showUserList();
-		std::cout << "Если хотите выйти, нажмите 99 и ENTER" << std::endl;
-		int res_id;
-		std::cin >> res_id;
-		if (res_id == 99) { return; }
-		else if (res_id < 1 || res_id > listSize())
-		{
-			std::cout << "Несуществующий номер пользователя" << std::endl;
+	if (checkForActiveUser() == false) {
+		throw "No active user in chat";
+	}
+	else {
+		if (listSize() == 1) {
+			std::cout << "Зарегистрированы только вы" << std::endl;
 			return;
 		}
-		else
-		{
-			res_id -= 1;
-			setResName(res_id, getResipient(res_id));
-			std::cout << "Сообщение для: " << getResipient(res_id) << std::endl;
-			message.createMessage_priv(getActiveUserName(), getActiveResLogin());
-			_messageList_priv.push_back(message);
+		else {
+			std::cout << "Добро пожаловать в приватный чат!" << std::endl;
+			showUserList();
+			std::cout << "Если хотите выйти, нажмите 99 и ENTER" << std::endl;
+			int res_id;
+			std::cin >> res_id;
+			if (res_id == 99) { return; }
+			else if (res_id < 1 || res_id > listSize())
+			{
+				std::cout << "Несуществующий номер пользователя" << std::endl;
+			}
+			else
+			{
+				res_id -= 1;
+				setResName(res_id, getResipient(res_id));
+				std::cout << "Сообщение для: " << getResipient(res_id) << std::endl;
+				message.createMessage_priv(getActiveUserName(), getActiveResLogin());
+				_messageList_priv.push_back(message);
+			}
 		}
+	}
 }
 
 void Chat::generalChat() 
 {
 	Message message;
-	std::cout << "Это общий чат" << std::endl;
-	message.createMessage(getActiveUserName());
-	_messageList.push_back(message);
+	if (checkForActiveUser() == false) {
+		throw "No active user in chat";
+	} 
+	else {
+		if (listSize() == 1) {
+			std::cout << "" << std::endl;
+			std::cout << "Это общий чат, но Вы в нем пока один" << std::endl;
+			message.createMessage(getActiveUserName());
+			_messageList.push_back(message);
+		}
+		else {
+			std::cout << "Это общий чат" << std::endl;
+			message.createMessage(getActiveUserName());
+			_messageList.push_back(message);
+		}
+	}
 }
 
 std::string Chat::getResipient(int idResipient)
@@ -237,8 +259,10 @@ std::string Chat::getResipient(int idResipient)
 
 void Chat::receive_priv_Message()
 {
-	if (_messageList_priv.size() == 0) 
+	if (_messageList_priv.size() == 0){
 		std::cout << "Нет сообщений в приватном чате" << std::endl;
+		return;
+	}
 	else {
 		for (Message mes : _messageList_priv)
 			return mes.showMessage_priv(getActiveUserName(), getActiveResLogin());
@@ -247,8 +271,10 @@ void Chat::receive_priv_Message()
 
 void Chat::recive_Message()
 {
-	if (_messageList.size() == 0)
+	if (_messageList.size() == 0) {
 		std::cout << "Нет сообщений в общем чате" << std::endl;
+		return;
+	}
 	else {
 		for (Message mes : _messageList)
 			mes.showMessage(getActiveUserName());
