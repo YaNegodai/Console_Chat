@@ -200,17 +200,13 @@ void Chat::privateChat()
 {
 
 	Message message;
-	if (checkForActiveUser() == false) {
-		throw "No active user in chat";
-	}
-	else {
+	showUserList();
 		if (listSize() == 1) {
 			std::cout << "Зарегистрированы только вы" << std::endl;
 			return;
 		}
 		else {
 			std::cout << "Добро пожаловать в приватный чат!" << std::endl;
-			showUserList();
 			std::cout << "Если хотите выйти, нажмите 99 и ENTER" << std::endl;
 			int res_id;
 			std::cin >> res_id;
@@ -228,7 +224,6 @@ void Chat::privateChat()
 				_messageList_priv.push_back(message);
 			}
 		}
-	}
 }
 
 void Chat::generalChat() 

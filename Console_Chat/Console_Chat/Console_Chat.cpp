@@ -99,7 +99,9 @@ int main()
     }
     catch (const char* exeption){
         std::cout << "Exeption:  " << exeption << std::endl;
+        actions(&chat, &user_exist);
     }
+    
     return 0;
 }
 
