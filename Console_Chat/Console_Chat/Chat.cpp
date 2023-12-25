@@ -27,11 +27,7 @@ void Chat::userDataInput(User& user)
 
 	user.setName(readInput());
 
-	std::cout << "Введите логин: ";
-	user.setLogin(readInput());
-
-	std::cout << "Введите пароль: ";
-	user.setPassword(readInput());
+	logInInput(user);
 }
 
 void Chat::logInInput(User& user)
