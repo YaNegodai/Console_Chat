@@ -56,14 +56,6 @@ void Chat::regUser(bool* userExist)
 		addUserToList(user);
 		std::cout << "\nВы зарегистрированны как:\n";
 		user.showUser();
-		logInUser(userExist);
-		size_t size = _userList.size() - 1;
-		if (userExist) 
-		{
-			setActiveUser(userExist,size, _userList.at(size).getName(), _userList.at(size).getLogin());
-		}
-		else
-			return;
 	}
 }
 
@@ -88,7 +80,7 @@ void Chat::logInUser(bool* userExist)
 	if (*userExist == false)
 	{
 		std::cout << "\nНеверный логин или пароль\n";
-		
+		return;
 	}
 }
 
