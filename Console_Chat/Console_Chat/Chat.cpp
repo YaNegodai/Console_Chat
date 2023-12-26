@@ -217,10 +217,6 @@ void Chat::privateChat()
 void Chat::generalChat() 
 {
 	Message message;
-	if (checkForActiveUser() == false) {
-		throw "No active user in chat";
-	} 
-	else {
 		if (listSize() == 1) {
 			std::cout << "" << std::endl;
 			std::cout << "Это общий чат, но Вы в нем пока один" << std::endl;
@@ -232,7 +228,6 @@ void Chat::generalChat()
 			message.createMessage(getActiveUserName());
 			_messageList.push_back(message);
 		}
-	}
 }
 
 std::string Chat::getResipient(int idResipient)
@@ -248,7 +243,7 @@ void Chat::receive_priv_Message()
 	}
 	else {
 		for (Message mes : _messageList_priv)
-			return mes.showMessage_priv(getActiveUserName(), getActiveResLogin());
+			return mes.showMessage_priv();
 	}
 }
 
@@ -260,6 +255,6 @@ void Chat::recive_Message()
 	}
 	else {
 		for (Message mes : _messageList)
-			mes.showMessage(getActiveUserName());
+			mes.showMessage();
 	}
 }

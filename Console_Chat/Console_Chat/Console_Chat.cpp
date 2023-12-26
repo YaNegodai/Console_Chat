@@ -94,14 +94,7 @@ int main()
     SetConsoleOutputCP(1251);
     Chat chat;
     bool user_exist{ false };
-    try {
-        actions(&chat, &user_exist);
-    }
-    catch (const char* exeption){
-        std::cout << "Exeption:  " << exeption << std::endl;
-        actions(&chat, &user_exist);
-    }
-    
+    actions(&chat, &user_exist);
     return 0;
 }
 

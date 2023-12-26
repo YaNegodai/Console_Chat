@@ -18,11 +18,11 @@ public:
 	~Message();
 
 	void createMessage(std::string name);
-	void showMessage(std::string name);
+	void showMessage();
 	std::string getMessage();
 
-	void createMessage_priv(std::string name, std::string _name_recipient);
-	void showMessage_priv(std::string name, std::string _name_recipient);
+	void createMessage_priv(std::string name, std::string name_recipient);
+	void showMessage_priv();
 	
 
 	};
