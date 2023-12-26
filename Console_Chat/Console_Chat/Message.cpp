@@ -33,6 +33,7 @@ Message::~Message()
 void Message::createMessage(std::string name)
 {
 	_name = name;
+	std::cin.clear();
 	std::getline(std::cin >> std::ws, _message);
 	std::cout << "Вы создали сообщение" << std::endl << "Отправитель:  " << _name << std::endl << "Текст сообщения: " << _message << std::endl;
 }
@@ -46,6 +47,7 @@ void Message::createMessage_priv(std::string name, std::string name_recipient)
 {
 	_name = name;
 	_name_recipient = name_recipient;
+	std::cin.clear();
 	std::getline(std::cin >> std::ws, _message);
 	std::cout << "Вы написали сообщение для: " << _name_recipient << std::endl << "Отправитель: " << _name << std::endl << "Текст сообщения: " << _message << std::endl;
 }

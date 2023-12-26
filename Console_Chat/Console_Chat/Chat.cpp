@@ -186,7 +186,6 @@ size_t Chat::listSize()
 
 void Chat::privateChat()
 {
-
 	Message message;
 	showUserList();
 		if (listSize() == 1) {
@@ -198,18 +197,27 @@ void Chat::privateChat()
 			std::cout << "Если хотите выйти, нажмите 99 и ENTER" << std::endl;
 			int res_id;
 			std::cin >> res_id;
-			if (res_id == 99) { return; }
-			else if (res_id < 1 || res_id > listSize())
+			if (std::cin.fail())
 			{
-				std::cout << "Несуществующий номер пользователя" << std::endl;
+				std::cin.clear();
+				return;
 			}
-			else
-			{
-				res_id -= 1;
-				setResName(res_id, getResipient(res_id));
-				std::cout << "Сообщение для: " << getResipient(res_id) << std::endl;
-				message.createMessage_priv(getActiveUserName(), getActiveResLogin());
-				_messageList_priv.push_back(message);
+			else {
+				if (res_id == 99) { return; }
+				else if (res_id < 1 || res_id > listSize())
+				{
+					std::cout << "Несуществующий номер пользователя" << std::endl;
+
+					return;
+				}
+				else
+				{
+					res_id -= 1;
+					setResName(res_id, getResipient(res_id));
+					std::cout << "Сообщение для: " << getResipient(res_id) << std::endl;
+					message.createMessage_priv(getActiveUserName(), getActiveResLogin());
+					_messageList_priv.push_back(message);
+				}
 			}
 		}
 }
