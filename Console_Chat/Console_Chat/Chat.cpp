@@ -4,6 +4,10 @@
 #include <iostream>
 #include <string>
 
+#if defined(max)
+#undef max
+#endif
+
 Chat::Chat()
 {
 	std::cout << "\nЧат запущен" << "\n\n";
@@ -195,29 +199,22 @@ void Chat::privateChat()
 		else {
 			std::cout << "Добро пожаловать в приватный чат!" << std::endl;
 			std::cout << "Если хотите выйти, нажмите 99 и ENTER" << std::endl;
-			int res_id;
+			int res_id;   
 			std::cin >> res_id;
-			if (std::cin.fail())
+			if (res_id == 99) { return; }
+			else if (res_id < 1 || res_id > listSize())
 			{
 				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << "Несуществующий номер пользователя" << std::endl;
 				return;
 			}
-			else {
-				if (res_id == 99) { return; }
-				else if (res_id < 1 || res_id > listSize())
-				{
-					std::cout << "Несуществующий номер пользователя" << std::endl;
-
-					return;
-				}
-				else
-				{
-					res_id -= 1;
-					setResName(res_id, getResipient(res_id));
-					std::cout << "Сообщение для: " << getResipient(res_id) << std::endl;
-					message.createMessage_priv(getActiveUserName(), getActiveResLogin());
-					_messageList_priv.push_back(message);
-				}
+			else
+			{
+				res_id -= 1;
+				setResName(res_id, getResipient(res_id));
+				std::cout << "Сообщение для: " << getResipient(res_id) << std::endl;
+				message.createMessage_priv(getActiveUserName(), getActiveResLogin());					_messageList_priv.push_back(message);
 			}
 		}
 }

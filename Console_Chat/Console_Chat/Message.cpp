@@ -30,31 +30,66 @@ Message::~Message()
 
 }
 
+void Message::setSender(std::string& sender)
+{
+	_name = sender;
+}
+
+std::string Message::getSender()
+{
+	return _name;
+}
+
+void Message::setRecipient(std::string& recipient)
+{
+	_name_recipient = recipient;
+}
+
+std::string Message::getRecipient()
+{
+	return _name_recipient;
+}
+
+std::string Message::inputAndClearStream(std::string& message)
+{
+	std::cin.clear();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::getline(std::cin >> std::ws, message);
+	return message;
+}
+
 void Message::createMessage(std::string name)
 {
-	_name = name;
-	std::cin.clear();
-	std::getline(std::cin >> std::ws, _message);
-	std::cout << "Вы создали сообщение" << std::endl << "Отправитель:  " << _name << std::endl << "Текст сообщения: " << _message << std::endl;
+	setSender(name);
+	std::string message;
+	inputAndClearStream(message);
+	setMessage(message);
+	std::cout << "Вы создали сообщение" << std::endl << "Отправитель:  " << getSender() << std::endl << "Текст сообщения: " << getMessage() << std::endl;
 }
 
 void Message::showMessage()
 {
-	std::cout << "Отправитель: " << _name << std::endl << "Текст сообщения: " << _message << std::endl;
+	std::cout << "Отправитель: " << getSender() << std::endl << "Текст сообщения: " << getMessage() << std::endl;
+}
+
+void Message::setMessage(std::string& message)
+{
+	_message = message;
 }
 
 void Message::createMessage_priv(std::string name, std::string name_recipient)
 {
-	_name = name;
-	_name_recipient = name_recipient;
-	std::cin.clear();
-	std::getline(std::cin >> std::ws, _message);
-	std::cout << "Вы написали сообщение для: " << _name_recipient << std::endl << "Отправитель: " << _name << std::endl << "Текст сообщения: " << _message << std::endl;
+	setSender(name);
+	setRecipient(name_recipient);
+	std::string message;
+	inputAndClearStream(message);
+	setMessage(message);
+	std::cout << "Вы написали сообщение для: " << getRecipient() << std::endl << "Отправитель: " << getSender() << std::endl << "Текст сообщения: " << getMessage() << std::endl;
 }
 
 void Message::showMessage_priv()
 {
-	std::cout << "Это сообщения для получателя " << _name_recipient << std::endl << "Отправитель: " << _name << std::endl << "Текст сообщения: " << _message << std::endl;
+	std::cout << "Это сообщения для получателя " << getRecipient() << std::endl << "Отправитель: " << getSender() << std::endl << "Текст сообщения: " << getMessage() << std::endl;
 }
 
 std::string Message::getMessage()
